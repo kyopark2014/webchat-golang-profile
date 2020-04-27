@@ -1,5 +1,10 @@
 # profileserver-golang-kubernetes
-This shows how to use dynamo db and redis cache using golang.
+This project is an implement of Profile server whci can save user profiles and then provide someone's profile. It is using Dynamo db and Redis cache using golang.
+
+### [Class Diagram]
+The diagram shows the structure of class where the profile service is the generalization of Service Interface and BaseService Class. Also, there are two type of database, Redis cache and Dynamo DB. 
+![image](https://user-images.githubusercontent.com/52392004/80381701-492ba080-88dc-11ea-9b7c-bdb9c0eebe41.png)
+
 
 ### load configuration
 ```go
