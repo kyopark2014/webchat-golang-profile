@@ -40,12 +40,13 @@ jobs:
     #### expecting it in the form of
     ####   /go/src/github.com/circleci/go-tool
     ####   /go/src/bitbucket.org/circleci/go-tool
-    environment:
-      APP_NAME: profileserver-golang-kubernetes 
     
-    #working_directory: /go/src/profileserver-golang-kubernetes
+    #environment:
+    #  APP_NAME: profileserver-golang-kubernetes 
     
-    working_directory: /go/src/$APP_NAME
+    working_directory: /go/src/profileserver-golang-kubernetes
+    
+    #working_directory: /go/src/$APP_NAME
 
     steps:
       - checkout
