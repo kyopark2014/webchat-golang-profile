@@ -20,7 +20,7 @@ alies:
       command: |
         docker build -t profileserver-golang-kubernetes:v1 .
       #  docker run -d -p 8080:8080 profileserver-golang-kubernetes:v1 
-        echo "Push Done"
+      #  echo "Push Done"
 jobs:
   build:
     docker:
