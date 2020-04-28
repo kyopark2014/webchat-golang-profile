@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"profileserver-golang-kuberntes/internal/config"
 	"profileserver-golang-kuberntes/internal/data"
-	"profileserver-golang-kuberntes/internal/log"
+	"profileserver-golang-kuberntes/internal/logger"
 	"time"
 
 	"github.com/gomodule/redigo/redis"
@@ -13,7 +13,12 @@ import (
 var (
 	pool *redis.Pool
 	ttl  int
+	log  *logger.Logger
 )
+
+func init() {
+	log = logger.NewLogger("rediscache")
+}
 
 // NewRedisCache is to set the configuration for redis
 func NewRedisCache(cfg config.RedisConfig) {

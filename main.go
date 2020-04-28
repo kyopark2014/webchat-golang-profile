@@ -5,7 +5,8 @@ import (
 	"os"
 	"os/signal"
 	"profileserver-golang-kuberntes/internal/config"
-	"profileserver-golang-kuberntes/internal/log"
+	"profileserver-golang-kuberntes/internal/logger"
+	"profileserver-golang-kuberntes/internal/rediscache"
 	"profileserver-golang-kuberntes/internal/server"
 	"sync"
 	"syscall"
@@ -16,7 +17,12 @@ var (
 	serviceList []*server.BaseService
 	conf        *config.AppConfig
 	wg          sync.WaitGroup
+	log         *logger.Logger
 )
+
+func init() {
+	log = logger.NewLogger("main")
+}
 
 //ExitSuccess is exit code 0 and ExitFailure is exit code 1
 const (
@@ -25,6 +31,7 @@ const (
 )
 
 func main() {
+	//	log = logger.NewLogger("Main")
 	log.I("Starting service ...")
 	err := Initialize()
 	if err != nil {
@@ -55,7 +62,8 @@ func Initialize() error {
 	log.D("Configuration has been loaded.")
 
 	// Setup log level
-	log.SetupLogger(conf.Logging.Enable, conf.Logging.Level)
+	// log.SetupLogger(conf.Logging.Enable, conf.Logging.Level)
+	logger.SetupLogger(conf.Logging.Enable, conf.Logging.Level)
 
 	// Setup signal handlers for interruption and termination
 	sigCh := make(chan os.Signal, 1)

@@ -6,8 +6,6 @@ import (
 	"profileserver-golang-kuberntes/internal/config"
 	"profileserver-golang-kuberntes/internal/data"
 	"profileserver-golang-kuberntes/internal/dynamo"
-	"profileserver-golang-kuberntes/internal/log"
-	"profileserver-golang-kuberntes/internal/logger"
 	"profileserver-golang-kuberntes/internal/rediscache"
 	"strings"
 
@@ -15,14 +13,10 @@ import (
 )
 
 // ProfileService is a list of service
-type ProfileService struct {
-	log *logger.Logger
-}
+type ProfileService struct{}
 
 // Init is to start Profile Service
 func (p *ProfileService) Init(conf *config.AppConfig) error {
-	p.log = logger.NewLogger("ProfileServer")
-
 	// initialize radis for in-memory cache
 	rediscache.NewRedisCache(conf.Redis)
 

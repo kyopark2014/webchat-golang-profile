@@ -2,10 +2,17 @@ package server
 
 import (
 	"profileserver-golang-kuberntes/internal/config"
-	"profileserver-golang-kuberntes/internal/log"
 	"profileserver-golang-kuberntes/internal/logger"
 	"sync"
 )
+
+var (
+	log *logger.Logger
+)
+
+func init() {
+	log = logger.NewLogger("ProfileServer")
+}
 
 // Service is the interface for main framework
 type Service interface {
@@ -19,12 +26,11 @@ type BaseService struct {
 	service Service
 	wg      *sync.WaitGroup
 	conf    *config.AppConfig
-	log     *logger.Logger
 }
 
 // NewBaseService defines an instance of BaseService
 func NewBaseService(s Service, wg *sync.WaitGroup, conf *config.AppConfig) *BaseService {
-	bs := &BaseService{service: s, wg: wg, conf: conf, log: logger.NewLogger("BaseService")}
+	bs := &BaseService{service: s, wg: wg, conf: conf}
 
 	if err := bs.service.Init(bs.conf); err != nil {
 		log.E("Fail to initiate: %v", err)

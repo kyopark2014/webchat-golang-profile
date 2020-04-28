@@ -69,9 +69,9 @@ type Logger struct {
 
 // NewLogger returns an instance of logger
 func NewLogger(module string) *Logger {
-	iml := &Logger{logging.MustGetLogger(module)}
-	iml.ExtraCalldepth = 1
-	return iml
+	l := &Logger{logging.MustGetLogger(module)}
+	l.ExtraCalldepth = 1
+	return l
 }
 
 // D writes debug level log
