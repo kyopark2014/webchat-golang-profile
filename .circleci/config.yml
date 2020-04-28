@@ -26,10 +26,6 @@ jobs:
   Build&Push_Docker:
     machine: true # For building docker image
     environment:
-      <<: *proxies
-      APP_NAME: circleci-docker
-      WHERE: docker.rt.sec.samsung.net/cp-solution
-
     steps:
       - checkout # Git Clone
       - *setup_redis
