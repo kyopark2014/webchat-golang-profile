@@ -1,0 +1,38 @@
+version: 2
+alies:
+  setup_redis: &setup_redis
+    run:
+      name: Setup Redis
+      command: |
+        docker run -d -p 6379:6379 redis:latest
+  setup_dynamo: &setup_dynamo
+    run:
+      name: Setup Dynamo
+      command: |
+        docker run -p 8000:8000 amazon/dynamodb-local
+  make_app: &make_app
+    run:
+      name: Make App
+      command: |
+        docker build -t profileserver-golang-kubernetes:v1 .
+        docker run -d -p 8080:8080 profileserver-golang-kubernetes:v1 
+  test_docker: &test_docker
+    run:
+      name: Test Docker
+      command: |
+        curl -i localhost:8080/add -H "Content-Type: application/json" -d '{"UID":"kyopark","Name":"John","Email":"john@mail.com","Age":25}'
+        curl -i localhost:8080/search/kyopark
+jobs:
+  Build&Push_Docker:
+    machine: true # For building docker image
+    environment:
+      <<: *proxies
+      APP_NAME: circleci-docker
+      WHERE: docker.rt.sec.samsung.net/cp-solution
+
+    steps:
+      - checkout # Git Clone
+      - *setup_redis
+      - *setup_dynamo
+      - *make_app
+      - *test_docker
