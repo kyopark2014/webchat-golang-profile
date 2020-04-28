@@ -4,7 +4,7 @@ import (
 	"errors"
 	"profileserver-golang-kuberntes/internal/config"
 	"profileserver-golang-kuberntes/internal/data"
-	"profileserver-golang-kuberntes/internal/log"
+	"profileserver-golang-kuberntes/internal/logger"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -17,12 +17,17 @@ import (
 var (
 	db        *dynamodb.DynamoDB
 	tableName string // TableName for the name of data
+	log       *logger.Logger
 )
+
+func init() {
+	log = logger.NewLogger("dynamo")
+}
 
 // NewDatabase is initiate the SQL database
 func NewDatabase(cfg config.DynamoConfig) error {
 	// Create database
-	log.I("start newsession...")
+	log.I("start newsession toward: %v", cfg.Endpoint)
 	sess, sessErr := session.NewSession(&aws.Config{
 		Region:   aws.String(cfg.Region),
 		Endpoint: aws.String(cfg.Endpoint),

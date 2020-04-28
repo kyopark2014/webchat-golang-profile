@@ -3,12 +3,19 @@ package config
 import (
 	"encoding/json"
 	"io/ioutil"
-	"profileserver-golang-kuberntes/internal/log"
+	"profileserver-golang-kuberntes/internal/logger"
 )
 
 // Config is the only one instance holding configuration
 // of this service.
-var config *AppConfig
+var (
+	config *AppConfig
+	log    *logger.Logger
+)
+
+func init() {
+	log = logger.NewLogger("config")
+}
 
 // AppConfig is a structure into which config file
 // (e.g., config/config.json) is loaded.
