@@ -3,6 +3,11 @@
 # Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2
 alies:
+  setup_redis: &setup_redis
+    run:
+      name: Setup Redis
+      command: |
+        docker run -d -p 6379:6379 redis:latest
   make_app: &make_app
     run:
       name: Make App
@@ -29,6 +34,7 @@ jobs:
     APP_NAME: profileserver-golang-kubernetes
     steps:
       - checkout
+      - *setup_redis
 
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
