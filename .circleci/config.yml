@@ -40,9 +40,9 @@ jobs:
     APP_NAME: profileserver-golang-kubernetes
     steps:
       - checkout
-      - *make_app
-      - *setup_dynamo
-      - *setup_redis
+    #  - *make_app
+    #  - *setup_dynamo
+    #  - *setup_redis
 
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
