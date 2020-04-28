@@ -2,6 +2,14 @@
 #
 # Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2
+alies:
+  make_app: &make_app
+    run:
+      name: Make App
+      command: |
+        docker build -t profileserver-golang-kubernetes:v1 .
+        docker run -d -p 8080:8080 profileserver-golang-kubernetes:v1 
+        echo "Push Done"
 jobs:
   build:
     docker:
@@ -18,10 +26,11 @@ jobs:
     ####   /go/src/github.com/circleci/go-tool
     ####   /go/src/bitbucket.org/circleci/go-tool
     working_directory: /go/src/profileserver-golang-kubernetes
+    APP_NAME: profileserver-golang-kubernetes
     steps:
       - checkout
 
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
       - run: go test -v ./...
-      - docker build -t profileserver-golang-kubernetes:v1 .
+      - *make_app
