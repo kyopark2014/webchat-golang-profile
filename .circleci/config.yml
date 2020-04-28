@@ -8,7 +8,12 @@ alies:
       name: Setup Redis
       command: |
         docker run -d -p 6379:6379 redis:latest
-  make_app: &make_app
+  setup_dynamo: &setup_dynamo
+    run:
+      name: Setup Dynamo
+      command: |
+        docker pull amazon/dynamodb-local
+        docker run -p 8000:8000 amazon/dynamodb-local
     run:
       name: Make App
       command: |
@@ -34,6 +39,7 @@ jobs:
     APP_NAME: profileserver-golang-kubernetes
     steps:
       - checkout
+      - *setup_dynamo
       - *setup_redis
 
       # specify any bash command here prefixed with `run: `
