@@ -5,13 +5,13 @@ This project is an implement of Profile server whci can save user profiles and t
 As well as shown the diagram, this use case is very simple in which user1 can create or update the profile and then user2 may retrieve the profile of user1. It is a very usuful case and normally happen in the server side but requires high reliable and fast operation.
 ![image](https://user-images.githubusercontent.com/52392004/80549704-ea0f7e00-89f8-11ea-9cbc-2d28be06634a.png)
 
-### [Class Diagram]
-The diagram shows the structure of class where the profile service is the generalization of Service Interface and BaseService Class. Also, there are two type of database, Redis cache and Dynamo DB. 
-![image](https://user-images.githubusercontent.com/52392004/80381701-492ba080-88dc-11ea-9b7c-bdb9c0eebe41.png)
-
 ### Sequence Diagram
-This diagram shows how use Redis and DynamoDB in order to manage profile data.
+This diagram shows how to use Redis and DynamoDB in order to manage profile data.
 ![image](https://user-images.githubusercontent.com/52392004/80552684-5f338100-8a02-11ea-96b5-e4759aee641a.png)
+
+### [Class Diagram]
+This diagram represents the structure of class where the profile service is the generalization of Service Interface and BaseService Class. Also, there are two type of database, Redis cache and Dynamo DB. 
+![image](https://user-images.githubusercontent.com/52392004/80381701-492ba080-88dc-11ea-9b7c-bdb9c0eebe41.png)
 
 
 ### load configuration
