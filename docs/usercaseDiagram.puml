@@ -1,0 +1,21 @@
+@startuml Use Case
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+    AttributeIconSize 0
+}
+skinparam linetype ortho
+skinparam packageStyle rectangle
+left to right direction
+
+actor user1
+actor user2
+
+rectangle ProfileServer {
+ user1 --> (CreateProfile) : add new profile
+ user1 --> (UpdateProfile) : update
+ user2 <-- (RetrieveProfile) : retrieve
+}
+
+@enduml
