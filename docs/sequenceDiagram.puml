@@ -1,0 +1,44 @@
+@startuml Sequence
+skinparam class {
+    BackgroundColor White
+    ArrowColor Black
+    BorderColor Black
+    AttributeIconSize 0
+}
+'skinparam style strictuml
+skinparam stereotypeCBackgroundColor White
+skinparam stereotypeIBackgroundColor White
+skinparam stereotypeEBackgroundColor White
+skinparam stereotypeABackgroundColor White
+skinparam linetype ortho
+
+actor user1
+actor user2
+
+box "Profile Management"
+hide footbox
+
+collections ProfileServer
+user1 -> ProfileServer ++ : Insert
+
+database Redis
+ProfileServer -> Redis ++ : SetCache
+return
+
+database DynamoDB
+ProfileServer -> DynamoDB ++ : Write (Json)
+return
+return 200 OK
+
+
+
+user2 -> ProfileServer ++ : Retrieve
+ProfileServer -> Redis !! : GetCache
+
+ProfileServer -> DynamoDB ++ : Read
+return
+
+return Result (Json)
+
+end box
+@enduml
