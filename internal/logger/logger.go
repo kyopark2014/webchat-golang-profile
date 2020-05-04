@@ -14,6 +14,9 @@ var loggingEnable = true
 var format = logging.MustStringFormatter(
 	`%{time:2006-01-02 15:04:05.999} [%{level:.5s}] [%{module}] %{shortfile} %{shortfunc}(): %{message}`,
 )
+//var format = logging.MustStringFormatter(
+//	`%{time:2006-01-02 15:04:05.999} [%{level:.1s}] %{message}`,
+//)
 
 // Secure is an an example type implementing the Redactor interface. Any
 // time this is logged, the Redacted() function will be called.
@@ -62,7 +65,7 @@ func SetupLogger(isEnabled bool, level string) {
 	logging.SetBackend(backendLeveled)
 }
 
-// Logger is logger for IM
+// Logger is to express logging information
 type Logger struct {
 	*logging.Logger
 }
