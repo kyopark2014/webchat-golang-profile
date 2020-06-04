@@ -71,7 +71,7 @@ func NewDatabase(cfg config.DynamoConfig) error {
 	_, err := db.CreateTable(input)
 	if err != nil {
 		log.E("Got error calling CreateTable: %v", err.Error())
-		return err
+		return nil
 	}
 
 	log.I("Created the table %v", tableName)
