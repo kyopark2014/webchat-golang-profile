@@ -1,7 +1,7 @@
 # profileserver-golang-kubernetes
 This project is an implement of Profile server whci can save user profiles and then provide someone's profile. It is using Dynamo db and Redis cache using golang.
 
-### [Usecase Daiagram]
+### [Usecase Diagram]
 As well as shown the diagram, this use case is very simple in which user1 can create or update the profile and then user2 may retrieve the profile of user1. It is a very usuful case and normally happen in the server side but requires high reliable and fast operation.
 
 
