@@ -72,7 +72,14 @@ func Insert(w http.ResponseWriter, r *http.Request) {
 
 	// put the item into rediscache
 	key := item.UID // UID to identify the profile
-	_, rErr := rediscache.SetCache(key, &item)
+
+	raw, err := json.Marshal(item)
+	if err != nil {
+		log.E("Cannot encode to Json", err)
+	}
+	log.D("key: %v value: %v", key, string(raw))
+
+	_, rErr := rediscache.SetCache(key, raw)
 	if rErr != nil {
 		log.E("Error of setCache: %v", rErr)
 		w.WriteHeader(http.StatusServiceUnavailable)
@@ -89,14 +96,21 @@ func Retrieve(w http.ResponseWriter, r *http.Request) {
 	log.D("Looking for uid: %v ...", uid)
 
 	// search in redis cache
-	cache, err := rediscache.GetCache(uid)
+	raw, err := rediscache.GetCache(uid)
 	if err != nil {
 		log.E("Error: %v", err)
 	}
-	if cache != nil {
-		log.D("value from cache: %+v", cache)
+
+	var value *data.UserProfile
+	err = json.Unmarshal([]byte(raw), &value)
+	if err != nil {
+		log.E("%v: %v", uid, err)
+	}
+
+	if value != nil {
+		log.D("value from cache: %+v", value)
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(cache)
+		json.NewEncoder(w).Encode(value)
 	} else {
 		log.D("No data in redis cache then search it in database.")
 
@@ -112,6 +126,22 @@ func Retrieve(w http.ResponseWriter, r *http.Request) {
 
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(item)
+
+		// put the item into rediscache
+		key := item.UID // UID to identify the profile
+
+		raw, err := json.Marshal(item)
+		if err != nil {
+			log.E("Cannot encode to Json", err)
+		}
+		log.D("key: %v value: %v", key, string(raw))
+
+		_, rErr := rediscache.SetCache(key, raw)
+		if rErr != nil {
+			log.E("Error of setCache: %v", rErr)
+			return
+		}
+		log.D("Successfully inserted in redis cache")
 	}
 }
 
