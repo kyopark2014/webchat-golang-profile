@@ -1,4 +1,4 @@
-# profileserver-golang-kubernetes
+# webchat-golang-profile
 This project is an implement of Profile server whci can save user profiles and then provide someone's profile. It is using Dynamo db and Redis cache using golang.
 
 ### [Usecase Diagram]
