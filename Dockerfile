@@ -2,9 +2,9 @@
 ##  build stage  ##
 ###################
 FROM golang:1.13.0-alpine as builder
-WORKDIR /profileserver-golang-kubernetes
+WORKDIR /webchat-golang-profile
 COPY . .
-RUN go build -v -o profileserver-golang-kubernetes
+RUN go build -v -o webchat-golang-profile
 
 ##################
 ##  exec stage  ##
@@ -12,5 +12,5 @@ RUN go build -v -o profileserver-golang-kubernetes
 FROM alpine:3.10.2
 WORKDIR /app
 COPY ./configs/config.json.default ./configs/config.json
-COPY --from=builder /profileserver-golang-kubernetes /app/
-CMD ["./profileserver-golang-kubernetes"]
+COPY --from=builder /webchat-golang-profile /app/
+CMD ["./webchat-golang-profile"]

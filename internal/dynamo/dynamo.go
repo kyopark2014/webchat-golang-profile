@@ -2,10 +2,10 @@ package dynamo
 
 import (
 	"errors"
-	"profileserver-golang-kuberntes/internal/config"
-	"profileserver-golang-kuberntes/internal/data"
-	"profileserver-golang-kuberntes/internal/logger"
 	"time"
+	"webchat-golang-profile/internal/config"
+	"webchat-golang-profile/internal/data"
+	"webchat-golang-profile/internal/logger"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/client"

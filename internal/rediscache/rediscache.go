@@ -1,9 +1,9 @@
 package rediscache
 
 import (
-	"profileserver-golang-kuberntes/internal/config"
-	"profileserver-golang-kuberntes/internal/logger"
 	"time"
+	"webchat-golang-profile/internal/config"
+	"webchat-golang-profile/internal/logger"
 
 	"github.com/gomodule/redigo/redis"
 )

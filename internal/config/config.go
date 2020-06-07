@@ -3,7 +3,7 @@ package config
 import (
 	"encoding/json"
 	"io/ioutil"
-	"profileserver-golang-kuberntes/internal/logger"
+	"webchat-golang-profile/internal/logger"
 )
 
 // Config is the only one instance holding configuration

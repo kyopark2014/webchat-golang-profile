@@ -1,4 +1,4 @@
-module profileserver-golang-kuberntes
+module webchat-golang-profile
 
 go 1.13
 

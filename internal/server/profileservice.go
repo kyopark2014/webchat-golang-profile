@@ -3,11 +3,11 @@ package server
 import (
 	"encoding/json"
 	"net/http"
-	"profileserver-golang-kuberntes/internal/config"
-	"profileserver-golang-kuberntes/internal/data"
-	"profileserver-golang-kuberntes/internal/dynamo"
-	"profileserver-golang-kuberntes/internal/rediscache"
 	"strings"
+	"webchat-golang-profile/internal/config"
+	"webchat-golang-profile/internal/data"
+	"webchat-golang-profile/internal/dynamo"
+	"webchat-golang-profile/internal/rediscache"
 
 	"github.com/gorilla/mux"
 )
@@ -43,7 +43,7 @@ func (p *ProfileService) Start() error {
 	r.HandleFunc("/", LiveCheck).Methods("GET")
 
 	var err error
-	err = http.ListenAndServe(":8080", r)
+	err = http.ListenAndServe(":4040", r)
 
 	return err
 }

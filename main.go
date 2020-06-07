@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
-	"profileserver-golang-kuberntes/internal/config"
-	"profileserver-golang-kuberntes/internal/logger"
-	"profileserver-golang-kuberntes/internal/rediscache"
-	"profileserver-golang-kuberntes/internal/server"
 	"sync"
 	"syscall"
 	"time"
+	"webchat-golang-profile/internal/config"
+	"webchat-golang-profile/internal/logger"
+	"webchat-golang-profile/internal/rediscache"
+	"webchat-golang-profile/internal/server"
 )
 
 var (

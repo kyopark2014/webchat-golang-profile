@@ -1,9 +1,9 @@
 package server
 
 import (
-	"profileserver-golang-kuberntes/internal/config"
-	"profileserver-golang-kuberntes/internal/logger"
 	"sync"
+	"webchat-golang-profile/internal/config"
+	"webchat-golang-profile/internal/logger"
 )
 
 var (
