@@ -3,21 +3,35 @@
         "Enable": true,
         "Level": "DEBUG"
     },
+    "GracefulTermTimeMillis": 500,
     "Dynamo": {
-        "Endpoint": "http://localhost:8000",
+        "Endpoint": "http://10.253.69.155:8000",
         "Region": "us-west-2",
         "ReadCapacity": 10,
         "WriteCapacity": 10
-    },   
+    },  
     "Redis":{
-        "Host": "localhost",
+        "Host": "10.253.69.155",
         "Port": "6379",
         "PoolMaxIdle":300,
         "PoolMaxActive":300,
         "PoolIdleTimeout":600,
-        "TTL":60,
+        "TTL":0,
         "Password":"",
         "ConnTimeout":500
     },
-    "GracefulTermTimeMillis": 500
+    "SQL":{
+        "Host":"10.253.69.155",  
+        "Port":"3306",
+        "Username":"minikube",
+        "Password":"minikube",
+        "Database": "my_db",
+        "SchemaVersion": "0.0.1",
+        "Timeout":"20000ms",
+        "Protocol":"tcp",
+        "MaxOpenConnection":150,
+        "MaxIdleConnection":150,
+        "IdleConnectionTimeoutSec":90,
+        "ConnectionTimeoutSec":10
+      }    
 }

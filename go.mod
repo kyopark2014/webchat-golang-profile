@@ -17,5 +17,6 @@ require (
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7
 	github.com/prometheus/client_golang v1.2.1 // indirect
 	github.com/rafaeljusto/redigomock v2.3.0+incompatible // indirect
+	github.com/rs/cors v1.7.0
 	google.golang.org/grpc v1.25.1 // indirect
 )

@@ -14,6 +14,7 @@ var loggingEnable = true
 var format = logging.MustStringFormatter(
 	`%{time:2006-01-02 15:04:05.999} [%{level:.5s}] [%{module}] %{shortfile} %{shortfunc}(): %{message}`,
 )
+
 //var format = logging.MustStringFormatter(
 //	`%{time:2006-01-02 15:04:05.999} [%{level:.1s}] %{message}`,
 //)

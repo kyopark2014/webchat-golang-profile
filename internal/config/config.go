@@ -23,11 +23,23 @@ type AppConfig struct {
 	Logging struct {
 		Enable bool   `json:"Enable"`
 		Level  string `json:"Level"`
+		Host   string `json:"Host"`
 	} `json:"Logging"`
 
 	GracefulTermTimeMillis int64
 	Redis                  RedisConfig
 	Dynamo                 DynamoConfig
+	SQL                    SQLConfig
+}
+
+// SQLConfig defines the parameters for SQL DB
+type SQLConfig struct {
+	Host     string `json:"Host"`
+	Port     string `json:"Port"`
+	Username string `json:"Username"`
+	Password string `json:"Password"`
+	Database string `json:"Database"`
+	Protocol string `json:"Protocol"`
 }
 
 // DynamoConfig is for parameters of Dynamo
@@ -61,7 +73,7 @@ func GetInstance() *AppConfig {
 
 // Load reads config file (e.g., configs/config.json) and
 // unmarshalls JSON string in it into Config structure
-func Load(fname string) bool {
+func (AppConfig) Load(fname string) bool {
 	log.D("Load config from the file \"" + fname + "\".")
 
 	b, err := ioutil.ReadFile(fname)

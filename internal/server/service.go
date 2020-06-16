@@ -6,19 +6,17 @@ import (
 	"webchat-golang-profile/internal/logger"
 )
 
-var (
-	log *logger.Logger
-)
-
-func init() {
-	log = logger.NewLogger("ProfileServer")
-}
+var log *logger.Logger
 
 // Service is the interface for main framework
 type Service interface {
 	Init(conf *config.AppConfig) error
 	Start() error
-	OnTerminate() error
+	//	OnTerminate() error
+}
+
+func init() {
+	log = logger.NewLogger("server")
 }
 
 // BaseService is the base service
@@ -55,5 +53,6 @@ func (bs *BaseService) Stop() error {
 	defer bs.wg.Done()
 
 	log.D("Stop Server")
-	return bs.service.OnTerminate()
+	//	return bs.service.OnTerminate()
+	return nil
 }
